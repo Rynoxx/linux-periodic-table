@@ -1,0 +1,450 @@
+<!--
+Copyright © Lukas 'Rynoxx' Söder 2017
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+-->
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>Linux Periodic Table</title>
+		<style>
+			* {
+				box-sizing: border-box;
+				font-family: monospace;
+			}
+
+			.small {
+				font-size: 90%;
+			}
+
+			table {
+				width: 90%;
+				margin: auto auto;
+				text-align: center;
+			}
+
+			table td {
+				position: relative;
+				width: 5%;
+			}
+
+			table td::after, td.legend::after {
+				content: "";
+				display: block;
+				margin-top: 100%;
+			}
+
+			td.legend{
+				position: relative;
+				width: 30%;
+			}
+
+			table td.distro {
+				border: 1px solid black;
+			}
+
+			table td.distro h1, table td.distro h3, table td.legend h1, table td.legend h3 {
+				margin: 0;
+			}
+
+			table td.distro div, table td.legend div{
+				position: absolute;
+				width: 100%;
+				height: 100%;
+				left: 0%;
+				top: 0%;
+				overflow: hidden;
+			}
+
+			table td.legend div {
+				width: 80%;
+				height: 80%;
+				left: 10%;
+				top: 10%;
+				border: 1px solid black;
+			}
+
+			td.distro .pos, table td.legend .pos{
+				position: absolute;
+				transform: rotate(-45deg);
+				background: rgba(100, 100, 100, 0.1);
+				width: 100%;
+				padding-top: 0.75em;
+				padding-left: 1.25em;
+				left: calc(-50%);
+				top: 0px;
+			}
+
+			table td.distro div, table td.legend div {
+				font-size: 0.65vw;
+				padding-top: 0.4vw;
+			}
+
+			table td.legend div {
+				font-size: 1.56vw;
+				padding-top: 0.96vw;
+			}
+
+			td.fork::before{
+				position: absolute;
+				content: "";
+				display: block;
+				left: 0%;
+				top: 50%;
+				width: 67%;
+				height: 275%;
+				border-top: 1px solid black;
+				border-right: 1px solid black;
+			}
+
+			td.first.fork::before{
+				width: 33%;
+			}
+
+			td.legend span::after {
+				font-size: 1.3vw;
+			}
+
+			td.legend #legend_name::after {
+				content: "<--- Name";
+				position: absolute;
+				bottom: calc(50% - 0.75em);
+				right: -25%;
+				text-align: left;
+			}
+
+			td.legend #legend_popularity::after {
+				content: "Popularity ->";
+				position: absolute;
+				top: 1.5em;
+				left: calc(-50% - 1em);
+				text-align: right;
+			}
+
+			td.legend #legend_hpd::after {
+				content: "Hits Per Day --->";
+				position: absolute;
+				bottom: calc(12% + 1.75em);
+				left: calc(-55% - 1em);
+				text-align: right;
+			}
+
+			td.legend #legend_symbol::after {
+				content: "Symbol";
+				position: absolute;
+				bottom: calc(55% - 1em);
+				left: -35%;
+				text-align: right;
+			}
+		</style>
+	</head>
+	<body>
+		<table>
+			<tr>
+				<td class="distro pos_1"></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td class="legend pos_1" colspan="3" rowspan="3"></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td class="distro pos_2"></td>
+			</tr>
+			<tr>
+				<td class="distro pos_3"></td>
+				<td class="distro pos_4"></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td class="distro pos_5"></td>
+				<td class="distro pos_6"></td>
+				<td class="distro pos_7"></td>
+				<td class="distro pos_8"></td>
+				<td class="distro pos_9"></td>
+				<td class="distro pos_10"></td>
+			</tr>
+			<tr>
+				<td class="distro pos_11"></td>
+				<td class="distro pos_12"></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td class="distro pos_13"></td>
+				<td class="distro pos_14"></td>
+				<td class="distro pos_15"></td>
+				<td class="distro pos_16"></td>
+				<td class="distro pos_17"></td>
+				<td class="distro pos_18"></td>
+			</tr>
+			<tr>
+				<td class="distro pos_19"></td>
+				<td class="distro pos_20"></td>
+				<td class="distro pos_21"></td>
+				<td class="distro pos_22"></td>
+				<td class="distro pos_23"></td>
+				<td class="distro pos_24"></td>
+				<td class="distro pos_25"></td>
+				<td class="distro pos_26"></td>
+				<td class="distro pos_27"></td>
+				<td class="distro pos_28"></td>
+				<td class="distro pos_29"></td>
+				<td class="distro pos_30"></td>
+				<td class="distro pos_31"></td>
+				<td class="distro pos_32"></td>
+				<td class="distro pos_33"></td>
+				<td class="distro pos_34"></td>
+				<td class="distro pos_35"></td>
+				<td class="distro pos_36"></td>
+			</tr>
+			<tr>
+				<td class="distro pos_37"></td>
+				<td class="distro pos_38"></td>
+				<td class="distro pos_39"></td>
+				<td class="distro pos_40"></td>
+				<td class="distro pos_41"></td>
+				<td class="distro pos_42"></td>
+				<td class="distro pos_43"></td>
+				<td class="distro pos_44"></td>
+				<td class="distro pos_45"></td>
+				<td class="distro pos_46"></td>
+				<td class="distro pos_47"></td>
+				<td class="distro pos_48"></td>
+				<td class="distro pos_49"></td>
+				<td class="distro pos_50"></td>
+				<td class="distro pos_51"></td>
+				<td class="distro pos_52"></td>
+				<td class="distro pos_53"></td>
+				<td class="distro pos_54"></td>
+			</tr>
+			<tr>
+				<td class="distro pos_55"></td>
+				<td class="distro pos_56"></td>
+				<td class="distro first fork"></td>
+				<td class="distro pos_72"></td>
+				<td class="distro pos_73"></td>
+				<td class="distro pos_74"></td>
+				<td class="distro pos_75"></td>
+				<td class="distro pos_76"></td>
+				<td class="distro pos_77"></td>
+				<td class="distro pos_78"></td>
+				<td class="distro pos_79"></td>
+				<td class="distro pos_80"></td>
+				<td class="distro pos_81"></td>
+				<td class="distro pos_82"></td>
+				<td class="distro pos_83"></td>
+				<td class="distro pos_84"></td>
+				<td class="distro pos_85"></td>
+				<td class="distro pos_86"></td>
+			</tr>
+			<tr>
+				<td class="distro pos_87"></td>
+				<td class="distro pos_88"></td>
+				<td class="distro second fork"></td>
+				<td class="distro pos_104"></td>
+				<td class="distro pos_105"></td>
+				<td class="distro pos_106"></td>
+				<td class="distro pos_107"></td>
+				<td class="distro pos_108"></td>
+				<td class="distro pos_109"></td>
+				<td class="distro pos_110"></td>
+				<td class="distro pos_111"></td>
+				<td class="distro pos_112"></td>
+				<td class="distro pos_113"></td>
+				<td class="distro pos_114"></td>
+				<td class="distro pos_115"></td>
+				<td class="distro pos_116"></td>
+				<td class="distro pos_117"></td>
+				<td class="distro pos_118"></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td class="distro" style="border: none;">
+					<div>
+						<p class="small">
+							This periodic table uses data from <a href="https://distrowatch.com">DistroWatch</a>.
+						</p>
+					</div>
+				</td>
+				<td></td>
+				<td class="distro" style="border: none;">
+					<div>
+						<p class="small">
+							Inspired by <a href="https://linux.pictures/projects/dark-periodic-table-of-gnu-linux-distros">Periodic Table of GNU/Linux Distros</a>.
+						</p>
+					</div>
+				</td>
+				<td></td>
+				<td class="distro" style="border: none;">
+					<div>
+						<p class="small">
+							Created by <a href="https://github.com/Rynoxx">Rynoxx</a>.<br />
+							<a href="https://github.com/Rynoxx/linux-periodic-table">Source Code</a>
+						</p>
+					</div>
+				</td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td></td>
+				<td class="distro pos_57"></td>
+				<td class="distro pos_58"></td>
+				<td class="distro pos_59"></td>
+				<td class="distro pos_60"></td>
+				<td class="distro pos_61"></td>
+				<td class="distro pos_62"></td>
+				<td class="distro pos_63"></td>
+				<td class="distro pos_64"></td>
+				<td class="distro pos_65"></td>
+				<td class="distro pos_66"></td>
+				<td class="distro pos_67"></td>
+				<td class="distro pos_68"></td>
+				<td class="distro pos_69"></td>
+				<td class="distro pos_70"></td>
+				<td class="distro pos_71"></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td></td>
+				<td class="distro pos_89"></td>
+				<td class="distro pos_90"></td>
+				<td class="distro pos_91"></td>
+				<td class="distro pos_92"></td>
+				<td class="distro pos_93"></td>
+				<td class="distro pos_94"></td>
+				<td class="distro pos_95"></td>
+				<td class="distro pos_96"></td>
+				<td class="distro pos_97"></td>
+				<td class="distro pos_98"></td>
+				<td class="distro pos_99"></td>
+				<td class="distro pos_100"></td>
+				<td class="distro pos_101"></td>
+				<td class="distro pos_102"></td>
+				<td class="distro pos_103"></td>
+			</tr>
+		</table>
+
+		<script>
+/*
+Copyright © Lukas 'Rynoxx' Söder 2017
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+*/
+			class Distro{
+				constructor(name, popularity, firstStableReleaseYear, basedOn){
+					this.name = name.replace(/[\<\>\"\']/g, '');
+					this.popularity = parseInt(popularity);
+					this.firstStableReleaseYear = parseInt(firstStableReleaseYear);
+					this.basedOn = basedOn.replace(/[\<\>\"\']/g, '');
+				}
+
+				render(dottedHPD){
+					this.renderedHTML = "<div class='" + (this.basedOn + "").toLowerCase() + "'>" +
+							"<span class='pos'>" + this.popularity + "</span>" +
+							"<h1>" + this.name.substring(0, 1).toUpperCase() + this.name.substring(1, 2).toLowerCase() + "</h1>" +
+							"<h3" + (this.name.length > 10 ? " class='small'" : "") + ">" + this.name + "</h3>" +
+							(
+								dottedHPD === true ? (
+									"<h3>" + (this.firstStableReleaseYear + "").substring(0, 1) + "." + (this.firstStableReleaseYear + "").substring(1) + "</h3>"
+								) :
+								(
+									"<h3>" + this.firstStableReleaseYear + "</h3>"
+								)
+							) +
+						"</div>";
+					var elm = document.querySelector("td.distro.pos_" + this.popularity);
+
+					if(elm !== null){
+						elm.innerHTML = this.renderedHTML;
+					}
+
+					if(this.popularity === 1){
+						var legend = document.querySelector("td.legend.pos_" + this.popularity);
+
+						if(legend !== null){
+							legend.innerHTML = "<span id='legend_popularity'></span><span id='legend_name'></span><span id='legend_symbol'></span><span id='legend_hpd'></span>" + this.renderedHTML;
+						}
+					}
+				}
+			}
+
+			var i = 1;
+
+			// Fetch distrowatch data via API
+			function fetchDistroWatch(){
+				var xmlHttp = new XMLHttpRequest();
+				xmlHttp.onreadystatechange = function() {
+					if (xmlHttp.readyState == 4 && xmlHttp.status == 200){
+						var parsed;
+						try{
+							parsed = JSON.parse(xmlHttp.response);
+						}
+						catch(e){
+							alert("Failed to parse JSON from API");
+
+							return;
+						}
+
+						for(var i = 0; i <  Math.min(parsed.months1.length, 118); i++){
+							(new Distro(parsed.months1[i].name, parsed.months1[i].popularity, parsed.months1[i].hpd, "Other")).render();
+						}
+					}
+				}
+				xmlHttp.open("GET", "./tojson.php?get", true); // true for asynchronous
+				xmlHttp.send(null);
+			}
+
+			fetchDistroWatch();
+		</script>
+	</body>
+</html>
